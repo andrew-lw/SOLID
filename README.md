@@ -137,6 +137,21 @@ public class Address {
 
 Liskov Substitution
 -------------------
+In mathmatics there is a principle which allows for the solving of simultaneous equations via substitution. Here is an example.
+
+```js
+x + y = 3
+3y + x = 5
+```
+
+The first equation could be rewritten to be _x = 3 - y_. If that is true what does that mean for the second example? It could be said here that any instance of _x_ could be replaced with _3 - y_. Let's think about inheritance and in what ways it is similar to this example. For a class S that is a subtype of class T, you should be able to say of S the following things:  
+
+* S is a T
+* S should have all the desirable properties and methods of T
+* any instance of T should be replaceable with an instance of S with no deteriaration to the program
+
+This is a great guideline for good inheritance heirarchy and as such is a backbone to OOP. Following this example can help prevent bad inheritance structures. An antipattern of this perhaps would be a cat as a subclass of airplane class. Not only does a cat need none of the core desirable properties / methods of an airplane. You also can not subsitute a cat for any airplane and get the same desired effect.  
+
 
 Interface Segregation
 ---------------------
