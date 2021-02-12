@@ -152,9 +152,28 @@ The first equation could be rewritten to be _x = 3 - y_. If that is true what do
 
 This is a great guideline for good inheritance heirarchy and as such is a backbone to OOP. Following this example can help prevent bad inheritance structures. An antipattern of this perhaps would be a cat as a subclass of airplane class. Not only does a cat need none of the core desirable properties / methods of an airplane. You also can not subsitute a cat for any airplane and get the same desired effect.  
 
-
 Interface Segregation
 ---------------------
+At the time this principle was laid out I imagine this idea would have been somewhat revolutionary in it's thinking. Today in a world full of microservices and app functions this is clearly a commonly shared idea among many developers. Perhaps this principle started us down the road we find ourselves on today. 
+
+The interface segregation principle states 2 main concepts :
+    -1 a class should not be forced to depend on methods it does not use.  
+    -2 split large interfaces into smaller generalizations.  
+
+```cs
+
+    public class Doge : IWalker{..}
+
+    public class Dolphin : ISwimmer {...}
+
+    public class Turtle : IWalker, ISwimmer {...}
+
+    public interface ISwimmer { void Swim() {...} }
+    public interface IWalker { void Walk() {...} }
+
+```
+
+Not all animals can swim, not all animals can walk. So you could see that putting either of those methods in an IAnimal interface which be an overgeneralization if all animals inherit from IAnimal. A superior solution would be to have a ISwimmer and IWalker interfaces with the supporting methods being split. Than only swimming animals need inherit from ISwimmer and walkers from IWalker. Thus removing a dependency on an interface method which a large amount of animals would not use at all. While doing this we also accomplished the second guidline of this principle. This makes maintenance and even extension easier in the future.  
 
 Dependency Inversion
 --------------------
