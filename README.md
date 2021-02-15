@@ -258,6 +258,8 @@ public class RedDataModel : IDataModel
 Other OOP Principles  
 --------------------
 
+The five SOLID design principles above are object oriented design best practices. Most, if not all of them heavily use one or more of what are generally considered the pillars of object oriented design. These design practices are invaluable and the fundamentals of the SOLID principles. 
+
 * [Polymorphism](#Polymorphism)
 * [Encapsulation](#Encapsulation)
 * [Inheritance](#Inheritance)
