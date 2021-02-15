@@ -177,6 +177,83 @@ Not all animals can swim, not all animals can walk. So you could see that puttin
 
 Dependency Inversion
 --------------------
+This principle showcases the need for objects to be decoupled from one another. The idea of this is that tightly sewn depdenencies between classes make software harder to change and extend while also makeing software more prone to breaking when changes do occur. The goal would be that high level systems like say UI should not break if I change a low level system like database interaction. The UI should not need to care which database provider I'm using for instance. And should I wish to change that the UI should be completely isolated from effects of that change. Dependency inversion helps address this common problem. The more complex a software system becomes the more necessary this design principle becomes. The abstract ideas of this principle are as follows:
+
+* depdendencies should be on interfaces / abstract classes, not concrete classes.
+* behaviors of the underlying concrete class should be generalized into the interface / abstract class.
+* prefer high level, abstracted dependency over low level, concrete dependency.
+* changes in a low level system should be isolated and not effect high level systems.
+
+In the example below the UI class can display either class which implements IDataModel and could changes could be made to their implementations of Get() with no effect to the UI use of that object.
+
+````cs
+
+public class UI {
+    public IDataModel Model {get; set;}
+
+    public void DisplayModel(){
+        //display the model
+    }
+}
+
+public interface IDataModel{
+    int ID {get; set;}
+    string Description {get; set;}
+    string[] Tags {get; set;}
+
+    IDataModel GetById();
+    IDataModel Create();
+}
+
+public class BlueDataModel : IDataModel
+{
+         public int ID { get; set; }
+        public string Description { get; set; }
+        public string[] Tags { get; set; }
+        public string BlueSpecificProperties {get; set;}
+
+        public IDataModel Create()
+        {
+            // create a blue data model 
+            //...blue data model logic ...
+            return new BlueDataModel();
+        }
+
+        public IDataModel GetById()
+        {
+            // get a blue data model
+            //...blue data model retrieval logic ...
+            return new BlueDataModel();
+        }   
+}
+
+public class RedDataModel : IDataModel
+{
+         public int ID { get; set; }
+        public string Description { get; set; }
+        public string[] Tags { get; set; }
+
+        public IDataModel Create()
+        {
+            // create a red data model 
+            //...red data model logic ...
+            return new RedDataModel();
+        }
+
+        public IDataModel GetById()
+        {
+            // get a red data model
+            //...red data model retrieval logic ...
+            return new RedDataModel();
+        }  
+
+        public IDataModel GetByDescription(){
+            //red specific method
+        }
+}
+
+````
+
 
 Other OOP Principles  
 --------------------
